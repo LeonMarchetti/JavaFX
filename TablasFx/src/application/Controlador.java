@@ -60,6 +60,9 @@ public class Controlador implements Initializable {
         public CheckBox getActivo() {
            return this.activo;
         }
+        public boolean isActivo() {
+            return this.activo.isSelected();
+        }
     }
 
     /**
@@ -141,7 +144,7 @@ public class Controlador implements Initializable {
                 newV.getDescripcion(),
                 newV.getSubClase(),
                 newV.getFecha(),
-                newV.getActivo().isSelected() ? "Activo" : "Inactivo"
+                newV.isActivo() ? "Activo" : "Inactivo"
                 );
             // oldV es la fila seleccionada anteriormente
         });
