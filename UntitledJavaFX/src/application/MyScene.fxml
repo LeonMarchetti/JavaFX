@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="239.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+   <children>
+      <Button fx:id="myButton" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#showDateTime" prefHeight="25.0" prefWidth="105.0" text="Show Date Time" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <TextField fx:id="myTextField" layoutX="115.0" layoutY="5.0" prefWidth="150.0" AnchorPane.bottomAnchor="209.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <TableView fx:id="tblTabla" editable="true" layoutX="5.0" layoutY="39.0" prefHeight="200.0" prefWidth="255.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0">
+        <columns>
+          <TableColumn fx:id="tblCol1" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="tblCol2" prefWidth="75.0" text="descripción" />
+            <TableColumn fx:id="tblCol3" prefWidth="75.0" text="clase2" />
+            <TableColumn fx:id="tblCol4" prefWidth="75.0" text="fecha" />
+            <TableColumn fx:id="tblCol5" prefWidth="75.0" text="Activo?" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
