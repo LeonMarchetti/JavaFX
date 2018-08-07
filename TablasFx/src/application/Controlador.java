@@ -75,6 +75,7 @@ public class Controlador implements Initializable {
         public SubClase(String descripcion) {
             this.descripcion = descripcion;
         }
+        @SuppressWarnings("unused")
         public String getDescripcion() {
             return this.descripcion;
         }
