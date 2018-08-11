@@ -23,22 +23,19 @@ public class Controlador implements Initializable {
     private class HiloListaPip extends Thread {
         @Override public void run() {
             try {
-                filasPip.clear();
                 List<String> paquetes = Pip.listaActualizables();
+                filasPip.clear();
                 if (paquetes.isEmpty()) {
                     alertaError("Mostrar paquetes", "No hay paquetes para actualizar.");
-
                 } else {
                     try {
                         for (String fila : paquetes) {
                             filasPip.add(new FilaPip(fila));
                         }
-
                     } catch (RuntimeException e) {
                         e.printStackTrace();
                     }
                 }
-
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
@@ -58,11 +55,9 @@ public class Controlador implements Initializable {
                 String salida = Pip.actualizar(this.paquete);
                 if (!salida.equals("")) {
                     alertaError("Actualizar", salida);
-
                 } else {
                     mostrar();
                 }
-
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
