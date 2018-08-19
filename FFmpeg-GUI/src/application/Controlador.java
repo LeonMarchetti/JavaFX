@@ -26,7 +26,6 @@ import javafx.stage.DirectoryChooser;
 
 public class Controlador implements Initializable {
 
-//    private static final String ARCHIVO = "ffmpeg-gui.properties";
     private final String ARCHIVO = getClass().getClassLoader().getResource("").getPath()
         + "ffmpeg-gui.properties";
 
@@ -57,7 +56,6 @@ public class Controlador implements Initializable {
                     txtConvertirFin.getText(),
                     txtConvertirEscala.getText()
                 );
-//                btnConvertir.setDisable(false);
                 desactivarBotones(false);
 
             } catch (IOException e) {
@@ -81,7 +79,6 @@ public class Controlador implements Initializable {
                     Integer.parseInt(txtRecortarX.getText()),
                     Integer.parseInt(txtRecortarY.getText())
                 );
-//                btnRecortar.setDisable(false);
                 desactivarBotones(false);
 
             } catch (NumberFormatException e) {
@@ -179,13 +176,11 @@ public class Controlador implements Initializable {
     }
 
     @FXML private void actConvertir() {
-//        btnConvertir.setDisable(true);
         desactivarBotones(true);
         (new HiloConvertir()).start();
     }
 
     @FXML private void actRecortar() {
-//        btnRecortar.setDisable(true);
         desactivarBotones(true);
         (new HiloRecortar()).start();
     }
