@@ -15,18 +15,15 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class ControladorEntrada implements Initializable {
+public class ControladorEntrada extends MiControlador {
 
     @FXML private Button btnDir1;
     @FXML private Button btnDir2;
@@ -44,6 +41,9 @@ public class ControladorEntrada implements Initializable {
 
     private class HiloComparar extends Thread {
         @Override public void run() {
+
+            // TODO separar en clases de modelo
+
             File dir1 = new File(txtDir1.getText());
             File dir2 = new File(txtDir2.getText());
 
@@ -102,6 +102,8 @@ public class ControladorEntrada implements Initializable {
                         scene.getStylesheets().add("/application/application.css");
 
                         ControladorSalida controlador = loader.getController();
+                        controlador.setDir1(dir1);
+                        controlador.setDir2(dir2);
                         controlador.setListas(faltantesDir1, faltantesDir2);
 
                         Stage stage = new Stage();
@@ -141,19 +143,8 @@ public class ControladorEntrada implements Initializable {
         (new HiloComparar()).start();
     }
 
-    private void alertaError(String encabezado, String contenido) {
-        Platform.runLater(new Thread() {
-            @Override public void run() {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setTitle(TITULO);
-                alerta.setHeaderText(encabezado);
-                alerta.setContentText(contenido);
-                alerta.show();
-            }
-        });
-    }
-
-    private void desactivarBotones(boolean desactivar) {
+    @Override
+    protected void desactivarBotones(boolean desactivar) {
         btnComparar.setDisable(desactivar);
         btnDir1.setDisable(desactivar);
         btnDir2.setDisable(desactivar);
