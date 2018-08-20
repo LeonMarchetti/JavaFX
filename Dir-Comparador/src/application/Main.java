@@ -11,9 +11,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Vista.fxml"));
+		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VistaEntrada.fxml"));
             Parent root = loader.load();
-            Controlador controlador = loader.getController();
+            ControladorEntrada controlador = loader.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/application/application.css");
 
