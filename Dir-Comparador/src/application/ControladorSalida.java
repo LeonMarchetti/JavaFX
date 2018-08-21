@@ -79,26 +79,39 @@ public class ControladorSalida extends MiControlador {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        TITULO = "Comparador de Directorios";
+
         lstDir1.setCellFactory(e -> new FileCell());
         lstDir2.setCellFactory(e -> new FileCell());
 
         lstDir1.getSelectionModel().selectedItemProperty().addListener(
             (obs, oldV, newV) -> {
-                copiarArchivo(dir1, newV);
-                lstDir1.getItems().remove(newV);
+                if (newV != null) {
+                    System.out.printf("Seleccionado: \"%s\"\n", newV.getName());
+                    if (alertaConfirmacion(TITULO, "¿Desea ignorar este archivo?")) {
+                        lstDir2.getItems().remove(newV);
+                    }
+                }
         });
 
         lstDir2.getSelectionModel().selectedItemProperty().addListener(
             (obs, oldV, newV) ->{
-                copiarArchivo(dir2, newV);
-                lstDir2.getItems().remove(newV);
+                if (newV != null) {
+                    System.out.printf("Seleccionado: \"%s\"\n", newV.getName());
+                    if (alertaConfirmacion(TITULO, "¿Desea ignorar este archivo?")) {
+                        lstDir2.getItems().remove(newV);
+                    }
+                }
         });
     }
 
     @Override
-    protected void desactivarBotones(boolean desactivar) {
+    protected void desactivarControles(boolean desactivar) {
         btnCopiar1.setDisable(desactivar);
         btnCopiar2.setDisable(desactivar);
+
+        lstDir1.setDisable(desactivar);
+        lstDir2.setDisable(desactivar);
     }
 
     @FXML private void actCopiar1(ActionEvent envent) {

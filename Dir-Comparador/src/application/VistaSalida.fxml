@@ -9,7 +9,7 @@
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="5.0" />
       <RowConstraints minHeight="10.0" prefHeight="25.0" />
-      <RowConstraints minHeight="10.0" prefHeight="200.0" />
+      <RowConstraints minHeight="10.0" prefHeight="275.0" />
       <RowConstraints minHeight="10.0" prefHeight="5.0" />
    </rowConstraints>
    <columnConstraints>

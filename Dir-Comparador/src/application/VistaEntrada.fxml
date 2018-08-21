@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.ControladorEntrada">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorEntrada">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="5.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="25.0" />
@@ -20,8 +20,8 @@
       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="5.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="btnDir1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="btnDir2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="btnDir1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actSeleccionarDir" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="btnDir2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actSeleccionarDir" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Button fx:id="btnComparar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actComparar" text="Comparar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <TextField fx:id="txtDir1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Directorio 1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <TextField fx:id="txtDir2" layoutX="35.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Directorio 2" GridPane.columnIndex="2" GridPane.rowIndex="2" />

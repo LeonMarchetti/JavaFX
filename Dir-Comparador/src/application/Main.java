@@ -13,7 +13,10 @@ public class Main extends Application {
 		try {
 		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VistaEntrada.fxml"));
             Parent root = loader.load();
-            ControladorEntrada controlador = loader.getController();
+
+            MiControlador controlador = loader.getController();
+            controlador.setStage(primaryStage);
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/application/application.css");
 
@@ -21,7 +24,7 @@ public class Main extends Application {
             primaryStage.setTitle("Comparador de Directorios");
             primaryStage.setScene(scene);
 
-            primaryStage.setOnHidden(evento -> {
+            primaryStage.setOnHidden(e -> {
                 controlador.guardarDatos();
             });
 

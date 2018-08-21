@@ -51,7 +51,7 @@ public class ControladorEntrada extends MiControlador {
                 alertaError(
                     "Error: No es un directorio",
                     "Campo de texto n°1: " + txtDir1.getText());
-                desactivarBotones(false);
+                desactivarControles(false);
                 return;
             }
 
@@ -59,7 +59,7 @@ public class ControladorEntrada extends MiControlador {
                 alertaError(
                     "Error: No es un directorio",
                     "Campo de texto n°2: " + txtDir2.getText());
-                desactivarBotones(false);
+                desactivarControles(false);
                 return;
             }
 
@@ -90,7 +90,7 @@ public class ControladorEntrada extends MiControlador {
                 }
             }
 
-            desactivarBotones(false);
+            desactivarControles(false);
 
             // Mostrar la vista de salida de archivos faltantes:
             Platform.runLater(new Runnable() {
@@ -139,17 +139,30 @@ public class ControladorEntrada extends MiControlador {
     }
 
     @FXML private void actComparar(ActionEvent event) {
-        desactivarBotones(true);
+        desactivarControles(true);
         (new HiloComparar()).start();
     }
 
+    @FXML private void actSeleccionarDir(ActionEvent event) {
+        File dir = elegirArchivo();
+        if (dir != null) {
+            if (event.getSource() == btnDir1) {
+                txtDir1.setText(dir.getAbsolutePath());
+
+            } else if (event.getSource() == btnDir2) {
+                txtDir2.setText(dir.getAbsolutePath());
+            }
+        }
+    }
+
     @Override
-    protected void desactivarBotones(boolean desactivar) {
+    protected void desactivarControles(boolean desactivar) {
         btnComparar.setDisable(desactivar);
         btnDir1.setDisable(desactivar);
         btnDir2.setDisable(desactivar);
     }
 
+    @Override
     public void guardarDatos() {
         try {
             props.setProperty("directorio1", txtDir1.getText());
