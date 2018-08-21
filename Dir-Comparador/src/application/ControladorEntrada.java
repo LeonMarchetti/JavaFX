@@ -6,9 +6,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -21,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modelo.ComparadorDirectorios;
 
 
 public class ControladorEntrada extends MiControlador {
@@ -36,18 +34,12 @@ public class ControladorEntrada extends MiControlador {
         + "dir-comparador.properties";
     private Properties props;
 
-    private List<File> faltantesDir1;
-    private List<File> faltantesDir2;
-
     private class HiloComparar extends Thread {
         @Override public void run() {
-
-            // TODO separar en clases de modelo
-
             File dir1 = new File(txtDir1.getText());
             File dir2 = new File(txtDir2.getText());
 
-            if (!dir1.isDirectory()) {
+            if (!ComparadorDirectorios.esDirValido(dir1)) {
                 alertaError(
                     "Error: No es un directorio",
                     "Campo de texto n°1: " + txtDir1.getText());
@@ -55,7 +47,7 @@ public class ControladorEntrada extends MiControlador {
                 return;
             }
 
-            if (!dir2.isDirectory()) {
+            if (!ComparadorDirectorios.esDirValido(dir2)) {
                 alertaError(
                     "Error: No es un directorio",
                     "Campo de texto n°2: " + txtDir2.getText());
@@ -63,32 +55,7 @@ public class ControladorEntrada extends MiControlador {
                 return;
             }
 
-            List<File> archivosDir1 = Arrays.asList(dir1.listFiles());
-            List<String> nombresDir1 = new ArrayList<>();
-            for (File f : archivosDir1) {
-                nombresDir1.add(f.getName());
-            }
-
-            List<File> archivosDir2 = Arrays.asList(dir2.listFiles());
-            List<String> nombresDir2 = new ArrayList<>();
-            for (File f : archivosDir2) {
-                nombresDir2.add(f.getName());
-            }
-
-            faltantesDir1 = new ArrayList<>();
-            faltantesDir2 = new ArrayList<>();
-
-            for (File f : archivosDir2) {
-                if (!f.isDirectory() && !nombresDir1.contains(f.getName())) {
-                    faltantesDir1.add(f);
-                }
-            }
-
-            for (File f : archivosDir1) {
-                if (!f.isDirectory() && !nombresDir2.contains(f.getName())) {
-                    faltantesDir2.add(f);
-                }
-            }
+            ComparadorDirectorios cd = new ComparadorDirectorios(dir1, dir2);
 
             desactivarControles(false);
 
@@ -102,11 +69,12 @@ public class ControladorEntrada extends MiControlador {
                         scene.getStylesheets().add("/application/application.css");
 
                         ControladorSalida controlador = loader.getController();
-                        controlador.setDir1(dir1);
-                        controlador.setDir2(dir2);
-                        controlador.setListas(faltantesDir1, faltantesDir2);
+                        controlador.setDir1(cd.getDir1());
+                        controlador.setDir2(cd.getDir2());
+                        controlador.setListas(cd.getFaltantesDir1(), cd.getFaltantesDir2());
 
                         Stage stage = new Stage();
+                        controlador.setStage(stage);
                         stage.initModality(Modality.APPLICATION_MODAL);
                         stage.setTitle(TITULO);
                         stage.setScene(scene);
@@ -144,7 +112,7 @@ public class ControladorEntrada extends MiControlador {
     }
 
     @FXML private void actSeleccionarDir(ActionEvent event) {
-        File dir = elegirArchivo();
+        File dir = elegirDirectorio();
         if (dir != null) {
             if (event.getSource() == btnDir1) {
                 txtDir1.setText(dir.getAbsolutePath());

@@ -38,7 +38,7 @@ public abstract class MiControlador implements Initializable {
         return (resultado.get() == ButtonType.OK);
     }
 
-    protected File elegirArchivo() {
+    protected File elegirDirectorio() {
         DirectoryChooser dc = new DirectoryChooser();
         dc.setTitle(TITULO);
         return dc.showDialog(this.stage);
