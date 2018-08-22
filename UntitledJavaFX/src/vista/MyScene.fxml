@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="239.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+<AnchorPane prefHeight="239.0" prefWidth="386.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controlador">
    <children>
       <Button fx:id="myButton" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#showDateTime" prefHeight="25.0" prefWidth="105.0" text="Show Date Time" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
       <TextField fx:id="myTextField" layoutX="115.0" layoutY="5.0" prefWidth="150.0" AnchorPane.bottomAnchor="209.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />

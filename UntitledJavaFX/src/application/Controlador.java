@@ -11,15 +11,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import marchetti.leon.MiControlador;
 
-public class MyController implements Initializable {
+public class Controlador extends MiControlador {
 
     @FXML private Button myButton;
     @FXML private TableColumn<Objeto, Integer> tblCol1;
@@ -171,6 +171,11 @@ public class MyController implements Initializable {
          // Show in VIEW
          myTextField.setText(dateTimeString);
 
+    }
+
+    @Override
+    protected void desactivarControles(boolean desactivar) {
+        throw new UnsupportedOperationException("No hay controles para desactivar");
     }
 
 }
