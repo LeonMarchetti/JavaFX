@@ -4,21 +4,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pip.Pip;
+import marchetti.leon.MiControlador;
+import modelo.Pip;
 
 
-public class Controlador implements Initializable {
+public class ControladorPip extends MiControlador {
 
     private class HiloListaPip extends Thread {
         @Override public void run() {
@@ -39,7 +36,7 @@ public class Controlador implements Initializable {
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
-            btnMostrar.setDisable(false);
+            desactivarControles(false);
         }
     }
 
@@ -61,7 +58,7 @@ public class Controlador implements Initializable {
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
-            btnMostrar.setDisable(false);
+            desactivarControles(false);
         }
     }
 
@@ -87,27 +84,20 @@ public class Controlador implements Initializable {
 
         tblPip.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
             if (newV != null) {
-                btnMostrar.setDisable(true);
+                desactivarControles(true);
                 (new HiloActualizarPip(newV.getPackage())).start();
             }
         });
     }
 
     @FXML private void mostrar() {
-        btnMostrar.setDisable(true);
+        desactivarControles(true);
         (new HiloListaPip()).start();
     }
 
-    private void alertaError(String encabezado, String contenido) {
-        Platform.runLater(new Thread() {
-            @Override public void run() {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setTitle("Pip GUI");
-                alerta.setHeaderText(encabezado);
-                alerta.setContentText(contenido);
-                alerta.show();
-            }
-        });
+    @Override
+    protected void desactivarControles(boolean desactivar) {
+        btnMostrar.setDisable(desactivar);
     }
 
 }

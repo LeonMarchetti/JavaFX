@@ -13,7 +13,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 	    try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Main.fxml"));
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/Main.fxml"));
             Parent root = loader.load();
             ControladorFFmpeg controlador = loader.getController();
             controlador.setStage(primaryStage);

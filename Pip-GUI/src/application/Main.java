@@ -12,11 +12,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Main.fxml"));
+		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/Main.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/application/application.css");
 
             primaryStage.setResizable(false);
             primaryStage.setTitle("Pip GUI");
