@@ -13,7 +13,7 @@ public class Main extends Application {
 	    try {
             // Read file fxml and draw interface.
             Parent root = FXMLLoader.load(getClass()
-                    .getResource("/application/Vista.fxml"));
+                    .getResource("/vista/Vista.fxml"));
 
             primaryStage.setTitle("TablasFx");
             primaryStage.setScene(new Scene(root));

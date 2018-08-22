@@ -7,18 +7,18 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import marchetti.leon.MiControlador;
 
 /**
- * Controlador.
+ * ControladorTabla.
  * @author LeoAM
  *
  */
-public class Controlador implements Initializable {
+public class ControladorTabla extends MiControlador {
 
     /**
      * Clase de ejemplo, que se va a mostrar en la tabla.
@@ -177,6 +177,11 @@ public class Controlador implements Initializable {
         int minDay = (int) LocalDate.of(1970, 1, 1).toEpochDay();
         int maxDay = (int) LocalDate.of(2018, 5, 18).toEpochDay();
         return LocalDate.ofEpochDay(rnd.nextInt(maxDay - minDay) + minDay);
+    }
+
+    @Override
+    protected void desactivarControles(boolean desactivar) {
+        throw new UnsupportedOperationException("No hay controles para desactivar");
     }
 
 }
