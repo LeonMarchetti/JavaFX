@@ -24,7 +24,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
 
             primaryStage.getIcons().add(
-                new Image(this.getClass().getResourceAsStream("ffmpeg.png")));
+                new Image(this.getClass().getResourceAsStream("/vista/ffmpeg.png")));
 
             primaryStage.setOnHidden(e -> {
                 try {

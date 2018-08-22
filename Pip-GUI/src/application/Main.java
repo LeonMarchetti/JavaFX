@@ -22,7 +22,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
 
             primaryStage.getIcons().add(
-                new Image(this.getClass().getResourceAsStream("python.png")));
+                new Image(this.getClass().getResourceAsStream("/vista/python.png")));
 
             primaryStage.show();
 
