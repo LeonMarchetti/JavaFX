@@ -18,7 +18,6 @@ public class Main extends Application {
             controlador.setStage(primaryStage);
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/application/application.css");
 
             primaryStage.setResizable(false);
             primaryStage.setTitle("Comparador de Directorios");

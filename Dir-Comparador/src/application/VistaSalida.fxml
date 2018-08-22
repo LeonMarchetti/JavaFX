@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorSalida">
+<GridPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorSalida">
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="5.0" />
       <RowConstraints minHeight="10.0" prefHeight="25.0" />

@@ -66,7 +66,6 @@ public class ControladorEntrada extends MiControlador {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VistaSalida.fxml"));
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
-                        scene.getStylesheets().add("/application/application.css");
 
                         ControladorSalida controlador = loader.getController();
                         controlador.setDir1(cd.getDir1());
