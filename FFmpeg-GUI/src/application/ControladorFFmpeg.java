@@ -10,24 +10,21 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
-import ffmpeg.ConversionGIF;
-import ffmpeg.RecortarImagen;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
+import marchetti.leon.MiControlador;
+import modelo.ConversionGIF;
+import modelo.RecortarImagen;
 
 
-public class Controlador implements Initializable {
+public class ControladorFFmpeg extends MiControlador {
 
     private final String ARCHIVO = getClass().getClassLoader().getResource("").getPath()
-        + "ffmpeg-gui.properties";
+        + "modelo-gui.properties";
 
     private Properties props;
     private ValorDirectorio dir = new ValorDirectorio();
@@ -56,7 +53,7 @@ public class Controlador implements Initializable {
                     txtConvertirFin.getText(),
                     txtConvertirEscala.getText()
                 );
-                desactivarBotones(false);
+                desactivarControles(false);
 
             } catch (IOException e) {
                 alertaError("Error de E/S", e.getMessage());
@@ -79,7 +76,7 @@ public class Controlador implements Initializable {
                     Integer.parseInt(txtRecortarX.getText()),
                     Integer.parseInt(txtRecortarY.getText())
                 );
-                desactivarBotones(false);
+                desactivarControles(false);
 
             } catch (NumberFormatException e) {
                 alertaError("Error de conversión de texto a número", e.getMessage());
@@ -112,7 +109,7 @@ public class Controlador implements Initializable {
     @FXML private TextField txtRecortarY;
     @FXML private Button btnRecortar;
 
-    public Controlador() {
+    public ControladorFFmpeg() {
 
     }
 
@@ -176,15 +173,16 @@ public class Controlador implements Initializable {
     }
 
     @FXML private void actConvertir() {
-        desactivarBotones(true);
+        desactivarControles(true);
         (new HiloConvertir()).start();
     }
 
     @FXML private void actRecortar() {
-        desactivarBotones(true);
+        desactivarControles(true);
         (new HiloRecortar()).start();
     }
 
+    @Override
     public void guardarDatos() throws IOException {
         props.setProperty("directorio", dir.getDir());
 
@@ -204,19 +202,9 @@ public class Controlador implements Initializable {
         props.store(new FileOutputStream(ARCHIVO), null);
     }
 
-    private void alertaError(String encabezado, String contenido) {
-        Platform.runLater(new Thread() {
-            @Override public void run() {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setTitle("FFmpeg GUI");
-                alerta.setHeaderText(encabezado);
-                alerta.setContentText(contenido);
-                alerta.show();
-            }
-        });
-    }
 
-    private void desactivarBotones(boolean desactivar) {
+    @Override
+    protected void desactivarControles(boolean desactivar) {
         btnConvertir.setDisable(desactivar);
         btnDir.setDisable(desactivar);
         btnRecortar.setDisable(desactivar);

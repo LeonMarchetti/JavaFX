@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +26,11 @@ public class Main extends Application {
             primaryStage.setScene(scene);
 
             primaryStage.setOnHidden(e -> {
-                controlador.guardarDatos();
+                try {
+                    controlador.guardarDatos();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             });
 
             primaryStage.show();

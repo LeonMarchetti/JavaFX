@@ -2,6 +2,7 @@ package marchetti.leon;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
@@ -45,7 +46,7 @@ public abstract class MiControlador implements Initializable {
         return dc.showDialog(this.stage);
     }
 
-    public void guardarDatos() {}
+    public void guardarDatos() throws IOException {}
 
     public void setStage(Stage stage) {
         this.stage = stage;

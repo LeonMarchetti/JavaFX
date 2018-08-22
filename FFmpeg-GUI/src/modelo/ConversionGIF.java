@@ -1,7 +1,7 @@
-package ffmpeg;
+package modelo;
 
 import java.io.IOException;
-import application.EjecutarComando;
+import marchetti.leon.EjecutarComando;
 
 public class ConversionGIF {
 

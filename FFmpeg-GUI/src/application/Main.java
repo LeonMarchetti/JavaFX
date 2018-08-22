@@ -15,9 +15,9 @@ public class Main extends Application {
 	    try {
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Main.fxml"));
             Parent root = loader.load();
-            Controlador controlador = loader.getController();
+            ControladorFFmpeg controlador = loader.getController();
+            controlador.setStage(primaryStage);
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/application/application.css");
 
             primaryStage.setResizable(false);
             primaryStage.setTitle("FFmpeg");
@@ -26,11 +26,11 @@ public class Main extends Application {
             primaryStage.getIcons().add(
                 new Image(this.getClass().getResourceAsStream("ffmpeg.png")));
 
-            primaryStage.setOnHidden(evento -> {
+            primaryStage.setOnHidden(e -> {
                 try {
                     controlador.guardarDatos();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             });
             primaryStage.show();
