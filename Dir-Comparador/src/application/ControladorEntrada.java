@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import marchetti.leon.MiControlador;
 import modelo.ComparadorDirectorios;
 
 
@@ -63,7 +64,7 @@ public class ControladorEntrada extends MiControlador {
             Platform.runLater(new Runnable() {
                 @Override public void run() {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VistaSalida.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/VistaSalida.fxml"));
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
 

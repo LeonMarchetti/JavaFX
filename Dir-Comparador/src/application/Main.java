@@ -5,13 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import marchetti.leon.MiControlador;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/VistaEntrada.fxml"));
+		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/VistaEntrada.fxml"));
             Parent root = loader.load();
 
             MiControlador controlador = loader.getController();
