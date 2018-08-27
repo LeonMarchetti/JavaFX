@@ -17,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import marchetti.leon.MiControlador;
+import marchetti.leon.vista.MiControlador;
 
 public class Controlador extends MiControlador {
 
@@ -84,6 +84,10 @@ public class Controlador extends MiControlador {
         public void setActivo(CheckBox activo) {
             this.activo = activo;
         }
+    }
+
+    public Controlador() {
+        TITULO = "Sin Título";
     }
 
     @Override

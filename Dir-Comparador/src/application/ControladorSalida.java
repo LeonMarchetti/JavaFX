@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import marchetti.leon.MiControlador;
+import marchetti.leon.vista.MiControlador;
 
 
 public class ControladorSalida extends MiControlador {
@@ -24,6 +24,10 @@ public class ControladorSalida extends MiControlador {
 
     private File dir1 = null;
     private File dir2 = null;
+
+    public ControladorSalida() {
+        TITULO = "Comparador de Directorios";
+    }
 
     /**
      * Clase que extiende a ListCell<File> para mostrar el nombre
@@ -80,8 +84,6 @@ public class ControladorSalida extends MiControlador {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        TITULO = "Comparador de Directorios";
-
         lstDir1.setCellFactory(e -> new FileCell());
         lstDir2.setCellFactory(e -> new FileCell());
 

@@ -11,7 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import marchetti.leon.MiControlador;
+import marchetti.leon.vista.MiControlador;
 
 /**
  * ControladorTabla.
@@ -100,6 +100,10 @@ public class ControladorTabla extends MiControlador {
 
     /** Lista de filas, sincronizada con la tabla. */
     private ObservableList<Fila> listaFilas = FXCollections.observableArrayList();
+
+    public ControladorTabla() {
+        TITULO = "Tablas JavaFX";
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

@@ -18,7 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import marchetti.leon.MiControlador;
+import marchetti.leon.vista.MiControlador;
 import modelo.ComparadorDirectorios;
 
 
@@ -30,10 +30,13 @@ public class ControladorEntrada extends MiControlador {
     @FXML private TextField txtDir1;
     @FXML private TextField txtDir2;
 
-    private static final String TITULO = "Comparador de Directorios";
     private final String ARCHIVO = getClass().getClassLoader().getResource("").getPath()
         + "dir-comparador.properties";
     private Properties props;
+
+    public ControladorEntrada() {
+        TITULO = "Comparador de Directorios";
+    }
 
     private class HiloComparar extends Thread {
         @Override public void run() {

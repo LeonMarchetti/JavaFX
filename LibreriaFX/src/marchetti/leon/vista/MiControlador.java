@@ -1,4 +1,4 @@
-package marchetti.leon;
+package marchetti.leon.vista;
 
 
 import java.io.File;
@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public abstract class MiControlador implements Initializable {
 
     protected Stage stage;
-    protected static String TITULO = "Aplicación";
+    protected String TITULO = "Aplicación";
 
     protected abstract void desactivarControles(boolean desactivar);
 
@@ -50,5 +50,9 @@ public abstract class MiControlador implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public String getTitulo() {
+        return TITULO;
     }
 }

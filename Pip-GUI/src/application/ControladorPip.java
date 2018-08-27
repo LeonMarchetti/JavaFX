@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import marchetti.leon.MiControlador;
+import marchetti.leon.vista.MiControlador;
 import modelo.Pip;
 
 
@@ -68,6 +68,10 @@ public class ControladorPip extends MiControlador {
     @FXML private TableColumn<FilaPip, String> colVersion;
     @FXML private TableColumn<FilaPip, String> colLatest;
     private ObservableList<FilaPip> filasPip = FXCollections.observableArrayList();
+
+    public ControladorPip() {
+        TITULO = "Pip GUI";
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

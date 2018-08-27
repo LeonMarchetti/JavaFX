@@ -1,35 +1,17 @@
 package application;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import marchetti.leon.vista.MiAplicacion;
 
 
-public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/Main.fxml"));
-            Parent root = loader.load();
+public class Main extends MiAplicacion {
 
-            Scene scene = new Scene(root);
-
-            primaryStage.setResizable(false);
-            primaryStage.setTitle("Pip GUI");
-            primaryStage.setScene(scene);
-
-            primaryStage.getIcons().add(
-                new Image(this.getClass().getResourceAsStream("/vista/python.png")));
-
-            primaryStage.show();
-
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void start(Stage primaryStage) {
+        setLocation("/vista/Main.fxml");
+        addIcon(primaryStage, "/vista/python.png");
+        super.start(primaryStage);
+    }
 
 	public static void main(String[] args) {
 		launch(args);

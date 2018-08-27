@@ -1,43 +1,16 @@
 package application;
 
-import java.io.IOException;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import marchetti.leon.vista.MiAplicacion;
 
 
-public class Main extends Application {
-	@Override
+public class Main extends MiAplicacion {
+
+    @Override
 	public void start(Stage primaryStage) {
-	    try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/Main.fxml"));
-            Parent root = loader.load();
-            ControladorFFmpeg controlador = loader.getController();
-            controlador.setStage(primaryStage);
-            Scene scene = new Scene(root);
-
-            primaryStage.setResizable(false);
-            primaryStage.setTitle("FFmpeg");
-            primaryStage.setScene(scene);
-
-            primaryStage.getIcons().add(
-                new Image(this.getClass().getResourceAsStream("/vista/ffmpeg.png")));
-
-            primaryStage.setOnHidden(e -> {
-                try {
-                    controlador.guardarDatos();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-            primaryStage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        setLocation("/vista/Main.fxml");
+	    addIcon(primaryStage, "/vista/ffmpeg.png");
+        super.start(primaryStage);
 	}
 
 	public static void main(String[] args) {

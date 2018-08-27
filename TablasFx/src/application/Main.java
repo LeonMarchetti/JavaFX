@@ -1,28 +1,16 @@
 package application;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import marchetti.leon.vista.MiAplicacion;
 
 
-public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
-	    try {
-            // Read file fxml and draw interface.
-            Parent root = FXMLLoader.load(getClass()
-                    .getResource("/vista/Vista.fxml"));
+public class Main extends MiAplicacion {
 
-            primaryStage.setTitle("TablasFx");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-	}
+    @Override
+    public void start(Stage primaryStage) {
+        setLocation("/vista/Vista.fxml");
+        super.start(primaryStage);
+    }
 
 	public static void main(String[] args) {
 		launch(args);

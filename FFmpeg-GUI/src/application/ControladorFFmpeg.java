@@ -16,7 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import marchetti.leon.MiControlador;
+import marchetti.leon.vista.MiControlador;
 import modelo.ConversionGIF;
 import modelo.RecortarImagen;
 
@@ -35,7 +35,6 @@ public class ControladorFFmpeg extends MiControlador {
         public String getDir() {
             return this.dir;
         }
-
         public void setDir(String dir) {
             this.dir = dir;
             btnDir.setText(this.dir);
@@ -110,7 +109,7 @@ public class ControladorFFmpeg extends MiControlador {
     @FXML private Button btnRecortar;
 
     public ControladorFFmpeg() {
-
+        TITULO = "FFmpeg";
     }
 
     @Override
