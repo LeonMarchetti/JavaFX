@@ -104,4 +104,8 @@ public class ControladorPip extends MiControlador {
         btnMostrar.setDisable(desactivar);
     }
 
+    @Override
+    public void guardarDatos() throws IOException {
+
+    }
 }

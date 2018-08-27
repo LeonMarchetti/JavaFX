@@ -109,6 +109,11 @@ public class ControladorSalida extends MiControlador {
     }
 
     @Override
+    public void guardarDatos() throws IOException {
+
+    }
+
+    @Override
     protected void desactivarControles(boolean desactivar) {
         btnCopiar1.setDisable(desactivar);
         btnCopiar2.setDisable(desactivar);

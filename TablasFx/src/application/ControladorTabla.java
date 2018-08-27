@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Random;
@@ -188,4 +189,8 @@ public class ControladorTabla extends MiControlador {
         throw new UnsupportedOperationException("No hay controles para desactivar");
     }
 
+    @Override
+    public void guardarDatos() throws IOException {
+
+    }
 }

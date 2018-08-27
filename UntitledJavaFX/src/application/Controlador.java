@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -182,4 +183,8 @@ public class Controlador extends MiControlador {
         throw new UnsupportedOperationException("No hay controles para desactivar");
     }
 
+    @Override
+    public void guardarDatos() throws IOException {
+
+    }
 }
