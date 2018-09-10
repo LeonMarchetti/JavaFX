@@ -5,11 +5,11 @@ de cada una en un archivo .fxml diferente, así como su controlador.
 ## Diseño pantalla principal:
 Hay que incluir el/los diseños de las pestañas en este lugar, usando:
 
-> <Tab text="Untitled Tab 1">
->   <content>
->       <fx:include fx:id="ctrl1" source="Pestaña1.fxml" />
->   </content>
-> </Tab>
+    <Tab text="Untitled Tab 1">
+      <content>
+          <fx:include fx:id="ctrl1" source="Pestaña1.fxml" />
+      </content>
+    </Tab>
 
 Aquí se incluyó el archivo `Pestaña1.fxml`, y poniéndole el identificador 
 `ctrl1`.
