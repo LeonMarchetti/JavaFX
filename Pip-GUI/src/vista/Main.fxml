@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane prefHeight="172.0" prefWidth="500.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorPip">
+<GridPane prefHeight="335.0" prefWidth="500.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorPip">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="0.0" percentWidth="100.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="157.0" minHeight="10.0" prefHeight="146.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="300.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Button fx:id="btnMostrar" mnemonicParsing="false" onAction="#mostrar" prefHeight="76.0" prefWidth="552.0" text="Mostrar" />
-      <TableView fx:id="tblPip" prefHeight="0.0" prefWidth="500.0" GridPane.rowIndex="1">
+      <TableView fx:id="tblPip" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="colPackage" prefWidth="250.0" resizable="false" text="Package" />
           <TableColumn fx:id="colVersion" prefWidth="125.0" resizable="false" text="Version" />
             <TableColumn fx:id="colLatest" prefWidth="125.0" resizable="false" text="Latest" />
         </columns>
       </TableView>
+      <Label fx:id="lblEstado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
    </children>
 </GridPane>

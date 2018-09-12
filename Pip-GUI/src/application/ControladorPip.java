@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,6 +23,14 @@ public class ControladorPip extends MiControlador {
         @Override public void run() {
             try {
                 List<String> paquetes = Pip.listaActualizables();
+
+                // Actualizar barra de estado con n° de paquetes encontrados
+                Platform.runLater(() -> {
+                    lblEstado.setText( (paquetes.size() == 1) ?
+                        "Un paquete encontrado" :
+                        paquetes.size() + " paquetes encontrados");
+                });
+
                 filasPip.clear();
                 if (paquetes.isEmpty()) {
                     alertaError("Mostrar paquetes", "No hay paquetes para actualizar.");
@@ -33,6 +43,7 @@ public class ControladorPip extends MiControlador {
                         e.printStackTrace();
                     }
                 }
+
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
@@ -63,6 +74,7 @@ public class ControladorPip extends MiControlador {
     }
 
     @FXML private Button btnMostrar;
+    @FXML private Label lblEstado;
     @FXML private TableView<FilaPip> tblPip;
     @FXML private TableColumn<FilaPip, String> colPackage;
     @FXML private TableColumn<FilaPip, String> colVersion;
