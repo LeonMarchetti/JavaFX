@@ -26,7 +26,7 @@ public class ControladorPip extends MiControlador {
 
                 // Actualizar barra de estado con n° de paquetes encontrados
                 Platform.runLater(() -> {
-                    lblEstado.setText( (paquetes.size() == 1) ?
+                    lblPaquetes.setText( (paquetes.size() == 1) ?
                         "Un paquete encontrado" :
                         paquetes.size() + " paquetes encontrados");
                 });
@@ -61,11 +61,21 @@ public class ControladorPip extends MiControlador {
         @Override public void run() {
             try {
                 String salida = Pip.actualizar(this.paquete);
+                String mensaje = "";
+
                 if (!salida.equals("")) {
+                    mensaje = "Error instalando";
                     alertaError("Actualizar", salida);
                 } else {
+                    mensaje = "Paquete instalado";
                     mostrar();
                 }
+
+                final String estadoInstalado = new String(mensaje + "\"" + this.paquete + "\"");
+                Platform.runLater(() -> {
+                    lblInstalado.setText(estadoInstalado);
+                });
+
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
@@ -74,7 +84,8 @@ public class ControladorPip extends MiControlador {
     }
 
     @FXML private Button btnMostrar;
-    @FXML private Label lblEstado;
+    @FXML private Label lblInstalado;
+    @FXML private Label lblPaquetes;
     @FXML private TableView<FilaPip> tblPip;
     @FXML private TableColumn<FilaPip, String> colPackage;
     @FXML private TableColumn<FilaPip, String> colVersion;
