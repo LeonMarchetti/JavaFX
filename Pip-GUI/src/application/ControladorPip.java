@@ -60,20 +60,24 @@ public class ControladorPip extends MiControlador {
 
         @Override public void run() {
             try {
+                Platform.runLater(() -> {
+                    lblActualizado.setText("Actualizando \"" + this.paquete + "\"");
+                });
+
                 String salida = Pip.actualizar(this.paquete);
                 String mensaje = "";
 
                 if (!salida.equals("")) {
-                    mensaje = "Error instalando";
+                    mensaje = "Error actualizando";
                     alertaError("Actualizar", salida);
                 } else {
-                    mensaje = "Paquete instalado";
+                    mensaje = "Paquete actualizado";
                     mostrar();
                 }
 
                 final String estadoInstalado = new String(mensaje + "\"" + this.paquete + "\"");
                 Platform.runLater(() -> {
-                    lblInstalado.setText(estadoInstalado);
+                    lblActualizado.setText(estadoInstalado);
                 });
 
             } catch (InterruptedException | IOException e) {
@@ -84,7 +88,7 @@ public class ControladorPip extends MiControlador {
     }
 
     @FXML private Button btnMostrar;
-    @FXML private Label lblInstalado;
+    @FXML private Label lblActualizado;
     @FXML private Label lblPaquetes;
     @FXML private TableView<FilaPip> tblPip;
     @FXML private TableColumn<FilaPip, String> colPackage;

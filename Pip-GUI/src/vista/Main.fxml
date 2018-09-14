@@ -30,6 +30,6 @@
             <Insets left="5.0" />
          </GridPane.margin>
       </Label>
-      <Label fx:id="lblInstalado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="lblActualizado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>
