@@ -70,6 +70,7 @@ public class ControladorPip extends MiControlador {
                 if (!salida.equals("")) {
                     mensaje = "Error actualizando";
                     alertaError("Actualizar", salida);
+
                 } else {
                     mensaje = "Paquete actualizado";
                     mostrar();

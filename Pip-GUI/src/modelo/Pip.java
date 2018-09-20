@@ -1,60 +1,41 @@
 package modelo;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
+import marchetti.leon.ProcesoConsola;
 
 public class Pip {
 
-    public static List<String> listaActualizables() throws IOException, InterruptedException {
+    private static final String COMANDO_LISTA = "pip list --outdated";
+    private static final String COMANDO_ACTUALIZAR = "pip install --upgrade %s";
 
-        String comando = "pip list --outdated";
-        System.out.printf("Ejecutando '%s'\n", comando);
-        Process pr = Runtime.getRuntime().exec(comando);
-        pr.waitFor();
+    public static List<String> listaActualizables()
+        throws IOException, InterruptedException
+    {
+        ProcesoConsola proceso = new ProcesoConsola(COMANDO_LISTA);
+        proceso.ejecutar(null);
+        List<String> resultado = proceso.getLineasSalida();
 
-        BufferedReader br = new BufferedReader(
-            new InputStreamReader(
-                pr.getInputStream()));
-
-        List<String> resultado = new ArrayList<String>();
-        String salida;
-        int i = 0;
-        while ((salida = br.readLine()) != null) {
-            if (i++ > 1) {
-                resultado.add(salida);
-            }
-            System.out.println(salida);
+        // Sacar las primeras dos líneas de la salida de "pip list":
+        if (!resultado.isEmpty()) {
+            resultado.remove(0);
+            resultado.remove(0);
         }
+
         return resultado;
     }
 
-    public static String actualizar(String paquete) throws IOException, InterruptedException {
+    public static String actualizar(String paquete)
+        throws IOException, InterruptedException
+    {
+        ProcesoConsola proceso = new ProcesoConsola(
+            String.format(COMANDO_ACTUALIZAR, paquete));
+        proceso.ejecutar(null);
 
-        String comando = String.format("pip install --upgrade %s", paquete);
-        System.out.printf("Ejecutando: '%s'\n", comando);
-        Process pr = Runtime.getRuntime().exec(
-            comando);
-
-        if (pr.waitFor() != 0) {
-            BufferedReader br = new BufferedReader(
-                new InputStreamReader(
-                    pr.getErrorStream()));
-
-            String salida = "";
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                salida += linea;
-                System.out.println(linea);
-            }
-
-            return salida;
-
-        } else {
-            return "";
-        }
+        /* Devuelve el error devuelto por el proceso para saber si se completó
+         * actualización del paquete con éxito.
+         */
+        return proceso.getError();
     }
 
 }
