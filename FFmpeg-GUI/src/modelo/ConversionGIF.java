@@ -1,7 +1,7 @@
 package modelo;
 
 import java.io.IOException;
-import marchetti.leon.EjecutarComando;
+import marchetti.leon.ProcesoConsola;
 
 public class ConversionGIF {
 
@@ -31,12 +31,13 @@ public class ConversionGIF {
             String comandoConvertir = String.format(formatoComandoConversion,
                 rutaVideo, inicio, fin, rutaSalida);
 
-            int res = EjecutarComando.ejecutar(comandoConvertir);
+            int res = (new ProcesoConsola(comandoConvertir)).ejecutar(null);
             if (res == 0) {
                 if (!escala.equals("")) {
                     String comandoEscala = String.format(formatoComandoEscala,
                         rutaSalida, escala, rutaSalida);
-                    return EjecutarComando.ejecutar(comandoEscala);
+
+                    return (new ProcesoConsola(comandoEscala)).ejecutar(null);
                 }
             }
             return res;

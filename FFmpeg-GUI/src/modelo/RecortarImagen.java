@@ -1,7 +1,7 @@
 package modelo;
 
 import java.io.IOException;
-import marchetti.leon.EjecutarComando;
+import marchetti.leon.ProcesoConsola;
 
 public class RecortarImagen {
 
@@ -27,7 +27,8 @@ public class RecortarImagen {
             String rutaSalida = String.format("\"%s\\%s\"", dir, salida);
             String comandoRecortar = String.format(formatoComandoRecorte,
                 rutaImagen, ancho, alto, x, y, rutaSalida);
-            return EjecutarComando.ejecutar(comandoRecortar);
+
+            return (new ProcesoConsola(comandoRecortar)).ejecutar(null);
         }
     }
 }
