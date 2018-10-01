@@ -22,6 +22,7 @@ public class ProcesoConsola {
     public int ejecutar(File dir)
         throws InterruptedException, IOException
     {
+        System.out.printf("[ProcesoConsola.ejecutar(File)] Ejecutando \"%s\"\n", this.comando);
         Process proceso = rt.exec(this.comando, null, dir);
 
         BufferedReader brEntrada = new BufferedReader(

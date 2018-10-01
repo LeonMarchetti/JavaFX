@@ -1,12 +1,22 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-.root {
+.root 
+{
     -fx-font-family: "Liberation Sans";
 }
 
-.button {
+.button 
+{
     -fx-font-weight: 700;
 }
 
-.table-column {
+.table-column 
+{
     -fx-font-family: "Liberation Mono";
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .button
+{
+    -fx-max-height: 30;
+    -fx-max-width: 100;
 }

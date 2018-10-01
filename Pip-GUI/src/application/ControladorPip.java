@@ -20,6 +20,13 @@ import modelo.Pip;
 public class ControladorPip extends MiControlador {
 
     private class HiloListaPip extends Thread {
+
+        private ControladorPip controlador;
+        public HiloListaPip(ControladorPip controlador)
+        {
+            this.controlador = controlador;
+        }
+
         @Override public void run() {
             try {
                 List<String> paquetes = Pip.listaActualizables();
@@ -32,12 +39,10 @@ public class ControladorPip extends MiControlador {
                 });
 
                 filasPip.clear();
-                if (paquetes.isEmpty()) {
-                    alertaError("Mostrar paquetes", "No hay paquetes para actualizar.");
-                } else {
+                if (!paquetes.isEmpty()) {
                     try {
                         for (String fila : paquetes) {
-                            filasPip.add(new FilaPip(fila));
+                            filasPip.add(new FilaPip(fila, controlador));
                         }
                     } catch (RuntimeException e) {
                         e.printStackTrace();
@@ -51,7 +56,9 @@ public class ControladorPip extends MiControlador {
         }
     }
 
-    private class HiloActualizarPip extends Thread {
+    class HiloActualizarPip
+        extends Thread
+    {
         private String paquete;
 
         public HiloActualizarPip(String paquete) {
@@ -64,6 +71,7 @@ public class ControladorPip extends MiControlador {
                     lblActualizado.setText("Actualizando \"" + this.paquete + "\"");
                 });
 
+                desactivarControles(true);
                 String salida = Pip.actualizar(this.paquete);
                 String mensaje = "";
 
@@ -76,7 +84,47 @@ public class ControladorPip extends MiControlador {
                     mostrar();
                 }
 
-                final String estadoInstalado = new String(mensaje + "\"" + this.paquete + "\"");
+                final String estadoInstalado = new String(mensaje + " \"" + this.paquete + "\"");
+                Platform.runLater(() -> {
+                    lblActualizado.setText(estadoInstalado);
+                });
+
+            } catch (InterruptedException | IOException e) {
+                e.printStackTrace();
+            }
+            desactivarControles(false);
+        }
+    }
+
+    class HiloDesinstalarPip
+        extends Thread
+    {
+        private String paquete;
+
+        public HiloDesinstalarPip(String paquete) {
+            this.paquete = paquete;
+        }
+
+        @Override public void run() {
+            try {
+                Platform.runLater(() -> {
+                    lblActualizado.setText("Desinstalando \"" + this.paquete + "\"");
+                });
+
+                desactivarControles(true);
+                String salida = Pip.desinstalar(this.paquete);
+                String mensaje = "";
+
+                if (!salida.equals("")) {
+                    mensaje = "Error desinstalando";
+                    alertaError("Desinstalar", salida);
+
+                } else {
+                    mensaje = "Paquete desinstalado";
+                    mostrar();
+                }
+
+                final String estadoInstalado = new String(mensaje + " \"" + this.paquete + "\"");
                 Platform.runLater(() -> {
                     lblActualizado.setText(estadoInstalado);
                 });
@@ -95,6 +143,8 @@ public class ControladorPip extends MiControlador {
     @FXML private TableColumn<FilaPip, String> colPackage;
     @FXML private TableColumn<FilaPip, String> colVersion;
     @FXML private TableColumn<FilaPip, String> colLatest;
+    @FXML private TableColumn<FilaPip, Button> colUpdate;
+    @FXML private TableColumn<FilaPip, Button> colUninstall;
     private ObservableList<FilaPip> filasPip = FXCollections.observableArrayList();
 
     public ControladorPip() {
@@ -111,25 +161,34 @@ public class ControladorPip extends MiControlador {
             new PropertyValueFactory<FilaPip, String>("version"));
         colLatest.setCellValueFactory(
             new PropertyValueFactory<FilaPip, String>("latest"));
+        colUpdate.setCellValueFactory(
+            new PropertyValueFactory<FilaPip, Button>("actualizar"));
+        colUninstall.setCellValueFactory(
+            new PropertyValueFactory<FilaPip, Button>("desinstalar"));
 
         mostrar();
 
-        tblPip.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
-            if (newV != null) {
-                desactivarControles(true);
-                (new HiloActualizarPip(newV.getPackage())).start();
-            }
-        });
+//        tblPip.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
+//            if (newV != null) {
+//                desactivarControles(true);
+//                (new HiloActualizarPip(newV.getPackage())).start();
+//            }
+//        });
     }
 
     @FXML private void mostrar() {
         desactivarControles(true);
-        (new HiloListaPip()).start();
+        (new HiloListaPip(this)).start();
     }
 
     @Override
     protected void desactivarControles(boolean desactivar) {
         btnMostrar.setDisable(desactivar);
+        for (FilaPip fila : filasPip)
+        {
+            fila.getActualizar().setDisable(desactivar);
+            fila.getDesinstalar().setDisable(desactivar);
+        }
     }
 
     @Override

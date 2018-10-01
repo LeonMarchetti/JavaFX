@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane prefHeight="335.0" prefWidth="500.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorPip">
+<GridPane prefHeight="350.0" prefWidth="477.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorPip">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" percentWidth="50.0" prefWidth="250.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" percentWidth="50.0" prefWidth="250.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" percentWidth="50.0" prefWidth="330.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" percentWidth="50.0" prefWidth="330.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
@@ -17,12 +17,14 @@
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Button fx:id="btnMostrar" mnemonicParsing="false" onAction="#mostrar" prefHeight="76.0" prefWidth="552.0" text="Mostrar" GridPane.columnSpan="2" />
-      <TableView fx:id="tblPip" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <Button fx:id="btnMostrar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mostrar" prefHeight="76.0" prefWidth="552.0" text="Mostrar" GridPane.columnSpan="2" />
+      <TableView fx:id="tblPip" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="colPackage" prefWidth="250.0" resizable="false" text="Package" />
-          <TableColumn fx:id="colVersion" prefWidth="125.0" resizable="false" text="Version" />
-            <TableColumn fx:id="colLatest" prefWidth="125.0" resizable="false" text="Latest" />
+          <TableColumn fx:id="colPackage" prefWidth="220.0" resizable="false" text="Package" />
+          <TableColumn fx:id="colVersion" prefWidth="110.0" resizable="false" text="Version" />
+            <TableColumn fx:id="colLatest" prefWidth="110.0" resizable="false" text="Latest" />
+            <TableColumn fx:id="colUpdate" prefWidth="110.0" resizable="false" />
+            <TableColumn fx:id="colUninstall" prefWidth="110.0" resizable="false" />
         </columns>
       </TableView>
       <Label fx:id="lblPaquetes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
