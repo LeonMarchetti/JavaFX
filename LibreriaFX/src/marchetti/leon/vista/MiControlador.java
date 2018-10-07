@@ -1,6 +1,5 @@
 package marchetti.leon.vista;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -13,9 +12,10 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 
-public abstract class MiControlador implements Initializable {
+public abstract class MiControlador implements Initializable
+{
 
-    protected Stage stage;
+    protected Stage  stage;
     protected String TITULO = "Aplicación";
 
     protected abstract void desactivarControles(boolean desactivar);
@@ -26,8 +26,10 @@ public abstract class MiControlador implements Initializable {
      * @param encabezado Encabezado de la alerta
      * @param contenido Contenido de la alerta
      */
-    protected void alertaError(String encabezado, String contenido) {
-        Platform.runLater(() -> {
+    protected void alertaError(String encabezado, String contenido)
+    {
+        Platform.runLater(() ->
+        {
             Alert alerta = new Alert(AlertType.ERROR);
             alerta.setTitle(TITULO);
             alerta.setHeaderText(encabezado);
@@ -43,9 +45,10 @@ public abstract class MiControlador implements Initializable {
      * y <i>Cancelar</i>.
      * @param encabezado Encabezado de la alerta
      * @param contenido Contenido de la alerta
-     * @return
+     * @return Verdadero, si se presionó <i>Aceptar</i>
      */
-    protected boolean alertaConfirmacion(String encabezado, String contenido) {
+    protected boolean alertaConfirmacion(String encabezado, String contenido)
+    {
         Alert alerta = new Alert(AlertType.CONFIRMATION);
         alerta.setTitle(TITULO);
         alerta.setHeaderText(encabezado);
@@ -57,25 +60,37 @@ public abstract class MiControlador implements Initializable {
     }
 
     /**
+     * Lanza una ventana de información.
+     * @param encabezado Encabezado de la alerta
+     * @param contenido Contenido de la alerta
+     */
+    protected void alertaInformacion(String encabezado, String contenido)
+    {
+        Alert alerta = new Alert(AlertType.INFORMATION);
+        alerta.setTitle(TITULO);
+        alerta.setHeaderText(encabezado);
+        alerta.setContentText(contenido);
+        agregarIconos(alerta);
+
+        alerta.show();
+    }
+
+    /**
      * Agrega los íconos de la ventana principal de la aplicación a
      * la alerta correspondiente.
      * @param alerta Alerta al que agregar los íconos
      */
-    private void agregarIconos(Alert alerta) {
-        ((Stage)
-            alerta
-            .getDialogPane()
-            .getScene()
-            .getWindow())
-            .getIcons()
-            .addAll(stage.getIcons());
+    private void agregarIconos(Alert alerta)
+    {
+        ((Stage) alerta.getDialogPane().getScene().getWindow()).getIcons().addAll(stage.getIcons());
     }
 
     /**
      * Lanza un diálogo para elegir un directorio.
      * @return Directorio elegido
      */
-    protected File elegirDirectorio() {
+    protected File elegirDirectorio()
+    {
         DirectoryChooser dc = new DirectoryChooser();
         dc.setTitle(TITULO);
         return dc.showDialog(this.stage);
@@ -88,7 +103,8 @@ public abstract class MiControlador implements Initializable {
      */
     public abstract void guardarDatos() throws IOException;
 
-    public void setStage(Stage stage) {
+    public void setStage(Stage stage)
+    {
         this.stage = stage;
     }
 
@@ -96,7 +112,8 @@ public abstract class MiControlador implements Initializable {
      * Obtiene el título de la aplicación.
      * @return El título de la aplicación
      */
-    public String getTitulo() {
+    public String getTitulo()
+    {
         return TITULO;
     }
 }
