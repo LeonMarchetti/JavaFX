@@ -53,13 +53,14 @@ public class ControladorPip extends MiControlador
                         {
                             filasPip.add(new FilaPip(fila, controlador));
                         }
-                    } catch (RuntimeException e)
+                    }
+                    catch (RuntimeException e)
                     {
                         e.printStackTrace();
                     }
                 }
-
-            } catch (InterruptedException | IOException e)
+            }
+            catch (InterruptedException | IOException e)
             {
                 e.printStackTrace();
             }
@@ -67,8 +68,7 @@ public class ControladorPip extends MiControlador
         }
     }
 
-    class HiloActualizarPip
-        extends Thread
+    class HiloActualizarPip extends Thread
     {
         private String paquete;
 
@@ -88,15 +88,15 @@ public class ControladorPip extends MiControlador
                 });
 
                 desactivarControles(true);
-                String salida = Pip.actualizar(this.paquete);
+                String salida  = Pip.actualizar(this.paquete);
                 String mensaje = "";
 
                 if (!salida.equals(""))
                 {
                     mensaje = "Error actualizando";
                     alertaError("Actualizar", salida);
-
-                } else
+                }
+                else
                 {
                     mensaje = "Paquete actualizado";
                     mostrar();
@@ -107,12 +107,15 @@ public class ControladorPip extends MiControlador
                 {
                     lblActualizado.setText(estadoInstalado);
                 });
-
-            } catch (InterruptedException | IOException e)
+            }
+            catch (InterruptedException | IOException e)
             {
                 e.printStackTrace();
             }
-            desactivarControles(false);
+            /* Comentado porque quedaban los botones habilitados mientras se
+             * actualizaba la lista de paquetes.
+             */
+            // desactivarControles(false);
         }
     }
 

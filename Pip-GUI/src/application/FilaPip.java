@@ -12,10 +12,11 @@ public class FilaPip {
     private Button actualizar;
     private Button desinstalar;
 
-    public FilaPip(String fila, ControladorPip controlador) {
-
+    public FilaPip(String fila, ControladorPip controlador)
+    {
         String[] datos = fila.split("\\s+", 0);
-        if (datos.length != 4) {
+        if (datos.length != 4)
+        {
             System.out.printf("Partes: %d\n", datos.length);
             throw new RuntimeException("La fila está mal formateada, longitud: " + datos.length);
         }
@@ -26,16 +27,16 @@ public class FilaPip {
         this.actualizar = new Button("Actualizar");
         this.desinstalar = new Button("Desinstalar");
 
-        this.actualizar.setOnMouseClicked(
-            e -> {
-                HiloActualizarPip hilo = controlador.new HiloActualizarPip(this.paquete);
-                hilo.start();
-            });
-        this.desinstalar.setOnMouseClicked(
-            e -> {
-                HiloDesinstalarPip hilo = controlador.new HiloDesinstalarPip(this.paquete);
-                hilo.start();
-            });
+        this.actualizar.setOnMouseClicked(e ->
+        {
+            HiloActualizarPip hilo = controlador.new HiloActualizarPip(this.paquete);
+            hilo.start();
+        });
+        this.desinstalar.setOnMouseClicked(e ->
+        {
+            HiloDesinstalarPip hilo = controlador.new HiloDesinstalarPip(this.paquete);
+            hilo.start();
+        });
     }
 
     public String getPackage() { return this.paquete; }
